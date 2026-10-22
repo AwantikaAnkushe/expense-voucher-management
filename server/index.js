@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production" && jwtSecret === "development-only-cha
 }
 const serverDirectory = path.dirname(fileURLToPath(import.meta.url));
 const clientDirectory = path.join(serverDirectory, "..", "dist");
-const uploadsDirectory = path.join(serverDirectory, "uploads");
+const uploadsDirectory = process.env.UPLOADS_DIR || path.join(serverDirectory, "uploads");
 fs.mkdirSync(uploadsDirectory, { recursive: true });
 
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5173" }));

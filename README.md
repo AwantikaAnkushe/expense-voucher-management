@@ -14,6 +14,23 @@ SQLite data is created in `server/data/expenses.sqlite`, and signature images ar
 
 For a production build, run `npm run build`, set `NODE_ENV=production` and a strong private `JWT_SECRET`, then run `npm start`. Express serves the built frontend and API on the same port.
 
+## Deploy from GitHub
+
+GitHub Pages only serves static files and cannot run this app's Express API, SQLite database, or signature uploads. Deploy the repository as a Node.js web service on a host such as Render instead:
+
+1. Push the latest code to GitHub.
+2. Create a new **Web Service** on your host and connect `AwantikaAnkushe/expense-voucher-management`.
+3. Use the repository root as the service root, `npm install && npm run build` as the build command, and `npm start` as the start command.
+4. Add these environment variables:
+   - `NODE_ENV=production`
+   - `JWT_SECRET` set to a long, random, private value
+   - `DATA_DIR=/var/data`
+   - `UPLOADS_DIR=/var/data/uploads`
+5. Attach persistent storage mounted at `/var/data`. The SQLite database and uploaded signatures are saved there so they survive service restarts and deployments.
+6. Deploy, then open the HTTPS service URL provided by the host.
+
+The seeded demo accounts are intended for evaluation only. Do not use real employee or financial data with these public demo credentials; configure production authentication and account provisioning before using this app for company expenses.
+
 ## Demo accounts
 
 | Role | Email | Password |

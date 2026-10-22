@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
-const dataDirectory = path.join(directory, "data");
+const dataDirectory = process.env.DATA_DIR || path.join(directory, "data");
 const databasePath = path.join(dataDirectory, "expenses.sqlite");
 fs.mkdirSync(dataDirectory, { recursive: true });
 
