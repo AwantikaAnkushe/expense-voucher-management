@@ -1,4 +1,3 @@
-Copy everything below and paste it into your GitHub `README.md` editor:
 
 # ExpenseFlow — Expense Voucher Management
 
